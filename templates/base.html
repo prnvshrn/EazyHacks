@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EazyHacks - View life changing Hacks at a one stop spot</title>
+</head>
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href={% static "site_css.css" %}>
+<script src="//fb.me/react-0.14.3.min.js"></script>
+<script src="//fb.me/react-dom-0.14.3.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+<script type="text/babel" src="{% static "react_components.js" %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<body>
+
+<nav class="navbar navbar-default">
+                      <div class="container-fluid">
+                        <div class="navbar-header">
+                          <a class="pull-left" href="#"><img src="{% static 'site_logo.png' %}" height="35" width="100" style="padding-top: 5px"/></a>
+                        </div>
+                        <ul class="nav navbar-nav">
+                          <li class="active"><a href="#">Home</a></li>
+                          <li><a href="#">Page 1</a></li>
+                          <li><a href="#">Page 2</a></li>
+                          <li><a href="#">Page 3</a></li>
+                        </ul>
+                      </div>
+                    </nav>
+
+{% block main %}
+
+{% endblock %}
+
+<div class="eazyhacks_footer">
+    <h2>Developed by Pranav Sharan</h2>
+    <p>Abstract graphic by <a href="undefined">undefined</a> from <a href="https://logomakr.com/">Logomakr</a> is licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>. Check out the new logo that I created on <a href="http://logomakr.com" title="Logo Makr">LogoMakr.com</a> https://logomakr.com/8Z2HCV</p>
+</div>
+
+</body>
+
+</html>
