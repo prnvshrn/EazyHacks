@@ -5,7 +5,7 @@
     <title>EazyHacks - View life changing Hacks at a one stop spot</title>
 </head>
 
-{% load static %}
+{% load staticfiles %}
 <link rel="stylesheet" type="text/css" href={% static "site_css.css" %}>
 <script src="//fb.me/react-0.14.3.min.js"></script>
 <script src="//fb.me/react-dom-0.14.3.min.js"></script>
@@ -22,14 +22,8 @@
                         <div class="navbar-header">
                           <a class="pull-left" href="#"><img src="{% static 'site_logo.png' %}" height="35" width="100" style="padding-top: 5px"/></a>
                         </div>
-                        <ul class="nav navbar-nav">
-                          <li class="active"><a href="#">Home</a></li>
-                          <li><a href="#">Page 1</a></li>
-                          <li><a href="#">Page 2</a></li>
-                          <li><a href="#">Page 3</a></li>
-                        </ul>
                       </div>
-                    </nav>
+</nav>
 
 {% block main %}
 
