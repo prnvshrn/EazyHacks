@@ -10,8 +10,10 @@ username = ""
 def openLogin(request):
     global username
     template = loader.get_template('first.html')
+    username_set = False
     if request.method == 'POST':
+        username_set = True
         print(request.POST.get("UserNameTextField"))
         username = request.POST.get("UserNameTextField")
-    context = {'username':username}
+    context = {'username':username, 'username_set':username_set}
     return HttpResponse(template.render(context, request))

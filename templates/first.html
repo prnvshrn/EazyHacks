@@ -2,12 +2,25 @@
 
 {% block main %}
 
-<div class="container-fluid">
-    <div class="row">
-        <form action="." method="post">
+<div id="LoginModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Enter Username to get started</h4>
+      </div>
+      <div class="modal-body">
+         <form action="." method="post" id="LoginForm">
         {% csrf_token %}
         <div id="login_component"></div>
-        </form>
+         </form>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-success ModalButtonClose" style="width:100%" form="LoginForm">Submit</button>
+      </div>
     </div>
+
+  </div>
 </div>
+
 {% endblock %}
