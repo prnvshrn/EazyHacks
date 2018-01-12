@@ -11,7 +11,7 @@ var Test = "{% csrf_token %}";
 var Login = React.createClass({
     render:function(){
             return(<div>
-                        <input type="text" className="form-control" placeholder="Enter a username" name="UserNameTextField" style={Width100} />
+                        <input type="text" className="form-control" placeholder="Enter a username" name="UserNameTextField" id="UserNameTextField" style={Width100} />
                 </div>
             );
         }

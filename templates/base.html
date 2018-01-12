@@ -17,16 +17,7 @@
 <body>
 
 {% if username_set == False %}
-<script>
-$(document).ready(function(){
-    $("#LoginModal").modal( {backdrop: 'static',
-    keyboard: false, show:true });
-
-    $("#LoginForm").submit(function(e){
-        $("#LoginModal").modal('hide');
-    });
-});
-</script>
+<script src="{% static "login_jquery.js" %}"></script>
 {% endif %}
 
 <nav class="navbar navbar-default">
