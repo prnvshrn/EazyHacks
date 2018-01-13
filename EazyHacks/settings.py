@@ -25,7 +25,7 @@ SECRET_KEY = '$=ir7!#*qifadn!p=7m0)9uauvcxee6go$ay%$g_a8l6u!ceq('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['prnvshrn.pythonanywhere.com']
 
 
 # Application definition
