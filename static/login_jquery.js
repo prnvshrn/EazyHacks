@@ -3,7 +3,6 @@ $(document).ready(function(){
     keyboard: false, show:true });
 
     $("#LoginForm").submit(function(e){
-        alert($("#UserNameTextField").val());
         $("#LoginModal").modal('hide');
     });
 });

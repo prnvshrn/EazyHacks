@@ -13,6 +13,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>var soocer_image = "{% static "soccer.jpg" %}";</script>
+<script>var soocer_caption = "Sports";</script>
 <script type="text/babel" src="{% static "react_components.js" %}"></script>
 <body>
 
@@ -25,14 +27,53 @@
                         <div class="navbar-header">
                           <a class="pull-left" href="#"><img src="{% static 'site_logo.png' %}" height="35" width="100" style="padding-top: 5px"/></a>
                         </div>
+                        <div>
                         <ul class="nav navbar-nav">
                           <li class="active"><a href="#">Home</a></li>
-                          <li><a href="#">Page 1</a></li>
-                          <li><a href="#">Page 2</a></li>
-                          <li><a href="#">Hi {{ username }}</a></li>
+                          <li><a href="#">Collections</a></li>
+                          <li><a href="#">Add</a></li>
                         </ul>
+                        <ul class="nav navbar-nav" style="float:right">
+                          <li><a href="#">Hi there {{ username }}</a></li>
+                        </ul>
+                        </div>
                       </div>
 </nav>
+
+ <div class="row" style="height:100px;">
+  <div class="col-md-4">
+    <div class="thumbnail">
+      <a href="/w3images/lights.jpg">
+        <img src="{% static "soccer.jpg" %}" alt="Lights" style="width:100%">
+        <div class="caption">
+          <p>Lorem ipsum...</p>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="thumbnail">
+      <a href="/w3images/nature.jpg">
+        <img src="{% static "kitchen.jpg" %}" alt="Nature" style="width:100%">
+        <div class="caption">
+          <p>Lorem ipsum...</p>
+        </div>
+      </a>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="thumbnail">
+      <a href="/w3images/fjords.jpg">
+        <img src="{% static "dumbbells.jpg" %}" alt="Fjords" style="width:100%">
+        <div class="caption">
+          <p>Lorem ipsum...</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<div id="image_box"></div>
 
 {% block main %}
 

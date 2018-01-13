@@ -18,3 +18,22 @@ var Login = React.createClass({
 });
 
 ReactDOM.render(<Login />,document.getElementById("login_component"));
+
+var ImageBox = React.createClass({
+    render:function(){
+        return(
+            <div>
+                <div className="thumbnail">
+                    <a href="www.google.com">
+                        <img src={soocer_image} style={Width100} />
+                        <div className="caption">
+                            <p>{soocer_caption}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        );
+    }
+});
+
+ReactDOM.render(<ImageBox />,document.getElementById("image_box"));
