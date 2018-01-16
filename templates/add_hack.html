@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block main %}
+{% load staticfiles %}
+<script type="text/babel" src="{% static "addhack_react_components.js" %}"></script>
+
+<div id="child_component"></div>
+<div id="hacks_layout"></div>
+{% endblock %}

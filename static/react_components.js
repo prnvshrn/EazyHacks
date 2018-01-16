@@ -26,7 +26,7 @@ function ImageBox (props){
                     <a href="www.google.com">
                         <img src={props.img_src} style={Width100Height250} />
                         <div className="caption text-center">
-                            <p><h3>{props.img_caption}</h3></p>
+                            <p>{props.img_caption}</p>
                         </div>
                     </a>
                 </div>
@@ -38,7 +38,7 @@ class ImageBoxLayout extends React.Component
     render()
     {
         return(
-            <div>
+            <div className="body-bg">
                 <div className="row">
                     <div className="col-md-4">
                         <ImageBox img_src={soocer_image} img_caption={soocer_caption}/>
@@ -67,4 +67,3 @@ class ImageBoxLayout extends React.Component
 }
 
 ReactDOM.render(<ImageBoxLayout />,document.getElementById("image_box_layout"));
-

@@ -13,19 +13,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script>var soocer_image = "{% static "soccer.jpg" %}";</script>
-<script>var soocer_caption = "Sports";</script>
-<script>var kitchen_image = "{% static "kitchen.jpg" %}";</script>
-<script>var kitchen_caption = "Kitchen";</script>
-<script>var fitness_image = "{% static "dumbbells.jpg" %}";</script>
-<script>var fitness_caption = "Fitness";</script>
-<script>var gaming_image = "{% static "video_game.png" %}";</script>
-<script>var gaming_caption = "Gaming";</script>
-<script>var dailylife_image = "{% static "daily_life.jpg" %}";</script>
-<script>var dailylife_caption = "Daily Life";</script>
-<script>var miscellaneous_image = "{% static "miscellaneous.jpg" %}";</script>
-<script>var miscellaneous_caption = "Miscellaneous";</script>
-<script type="text/babel" src="{% static "react_components.js" %}"></script>
+
 <body>
 
 {% if username_set == False %}
@@ -39,9 +27,9 @@
                         </div>
                         <div>
                         <ul class="nav navbar-nav">
-                          <li class="active"><a href="#">Home</a></li>
+                          <li class="active"><a href="{% url "login" %}">Home</a></li>
                           <li><a href="#">Collections</a></li>
-                          <li><a href="#">Add</a></li>
+                          <li><a href="{% url "add_hack" %}">Add</a></li>
                         </ul>
                         <ul class="nav navbar-nav" style="float:right">
                           <li><a href="#">Hi there {{ username }}</a></li>
@@ -56,11 +44,13 @@
 
 {% endblock %}
 
-<div class="eazyhacks_footer">
-    <h2>Developed by Pranav Sharan</h2>
-    <p>Abstract graphic by <a href="undefined">undefined</a> from <a href="https://logomakr.com/">Logomakr</a> is licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>. Check out the new logo that I created on <a href="http://logomakr.com" title="Logo Makr">LogoMakr.com</a> https://logomakr.com/8Z2HCV</p>
-</div>
 
+<nav class="navbar navbar-default navbar-bottom" role="navigation">
+  <div class="container">
+      <h2>Developed by Pranav Sharan</h2>
+    <p>Abstract graphic by <a href="undefined">undefined</a> from <a href="https://logomakr.com/">Logomakr</a> is licensed under <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0">CC BY 3.0</a>. Check out the new logo that I created on <a href="http://logomakr.com" title="Logo Makr">LogoMakr.com</a> https://logomakr.com/8Z2HCV</p>
+  </div>
+</nav>
 
 </body>
 

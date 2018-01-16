@@ -21,4 +21,5 @@ from django.conf.urls import url
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^$', views.openLogin, name='login'),
+    url(r'^AddHack.html/', views.openAddHack, name='add_hack'),
 ]
