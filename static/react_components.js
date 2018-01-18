@@ -26,7 +26,7 @@ function ImageBox (props){
                     <a href="www.google.com">
                         <img src={props.img_src} style={Width100Height250} />
                         <div className="caption text-center">
-                            <p>{props.img_caption}</p>
+                            <h3>{props.img_caption}</h3>
                         </div>
                     </a>
                 </div>
