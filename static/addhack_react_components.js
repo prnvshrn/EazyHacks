@@ -1,12 +1,15 @@
 var Width100 = {width:'100%'};
+var InputArray = [];
+var MaginTop10 = {marginTop:'5px'};
+var Width50 = {width:'50%'};
 
 var AddHack = React.createClass({
     render:function(){
         return(
             <div className="container">
                 <div className="form-group">
-                <label for="sel1">Select a category:</label>
-                <select className="form-control" id="sel1">
+                <label htmlFor="CategoryList">Select a category:</label>
+                <select className="form-control" id="CategoryList">
                     <option>Sports</option>
                     <option>Kitchen</option>
                     <option>Fitness</option>
@@ -25,17 +28,33 @@ var AddHack = React.createClass({
 })
 
 var HackDetails = React.createClass({
+    getInitialState:function(){
+        return{
+            comments:[]
+        }
+    },
+    add:function(){
+      this.props.addComponent(this.state.value);
+    },
       remove:function(){
      this.props.deleteComponent(this.props.index);
    },
-
+    changewa:function(event){
+           this.setState({value: event.target.value});
+                   InputArray.push(this.state.value);
+           //alert(this.state.value);
+    },
+    display:function(event){
+        //alert(this.state.value);
+    },
     render:function(){
         return(
-            <div className="container">
+            <div className="container" style={MaginTop10}>
                 <div className="input-group">
-                <input type="text" className="form-control"/>
+                <input type="text" className="form-control" value={this.state.value} onChange={this.changewa}/>
                     <div className="input-group-btn">
-                    <button type="button" onClick={this.remove} className="btn btn-danger">Remove</button>
+                    <button type="button"  onClick={this.remove} className="btn btn-danger"><span className="glyphicon glyphicon-minus"></span></button>
+                    <button type="button" className="btn btn-success"><span className="glyphicon glyphicon-ok"></span></button>
                     </div>
                 </div>
             </div>
@@ -61,17 +80,26 @@ var HacksLayout = React.createClass({
     },
     createButton:function(text,i){
         return(
-            <HackDetails key={i} index={i} deleteComponent={this.removeButton}>{text}</HackDetails>
+            <HackDetails key={i} index={i} addComponent={this.addButton.bind(null,"Something")} deleteComponent={this.removeButton}>{text}</HackDetails>
         );
     },
     render:function(){
+            var test="";
+            for(var i=0;i<InputArray.length;i++)
+            {
+                test = test + InputArray[i] + ";"
+            }
             return(
-                <div>
-                <div className="form-group center-block">
-                    <input type="button" onClick={this.addButton.bind(null,"Defaultwa")} className="btn btn-info" value="Add Step"/>
-                </div>
+
+                <div className="container">
+                    <div className="row">
+                    <button  onClick={this.addButton.bind(null,"Defaultwa")} className="btn btn-info">Add Step</button>
+                    <button  className="btn btn-danger">Remove All Steps</button>
+                    </div>
                     {this.state.comments.map(this.createButton)}
+                    <input type="text" value={test} />
                 </div>
+
             );
         }
 });
