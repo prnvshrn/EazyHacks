@@ -5,4 +5,6 @@ $(document).ready(function(){
     $("#LoginForm").submit(function(e){
         $("#LoginModal").modal('hide');
     });
+
+
 });

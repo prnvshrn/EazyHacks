@@ -23,3 +23,8 @@ body
 {
    background-color: #b8afb4;
 }
+
+.hide-element
+{
+   visibility: hidden;
+}

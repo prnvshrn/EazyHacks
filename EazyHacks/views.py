@@ -20,5 +20,13 @@ def openLogin(request):
 def openAddHack(request):
     template = loader.get_template('add_hack.html')
     global username
+    hacks = []
+    if request.method == 'POST':
+        print(request.POST.get("HackDetails"))
+        temp = request.POST.get("HackDetails")
+        hacks = temp.split(";")
+        for i in hacks:
+            print(i)
+        print(len(hacks))
     context = {'username':username}
     return HttpResponse(template.render(context,request))

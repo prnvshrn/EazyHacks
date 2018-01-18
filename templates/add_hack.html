@@ -3,15 +3,16 @@
 {% block main %}
 {% load staticfiles %}
 <script type="text/babel" src="{% static "addhack_react_components.js" %}"></script>
+<script src="{% static "hack_jquery.js" %}"></script>
 
-
-<div id="child_component"></div>
 <div id="hacks_layout"></div>
 
-<form>
+<form action="." method="post" id="HackForm">
+{% csrf_token %}
 <div class="container">
 <div class="form-group">
 <button type="submit" class="btn btn-success form-control">Save</button>
+<input type="text" class="hide-element" id="HackDetails" name="HackDetails">
 </div>
 </div>
 </form>
