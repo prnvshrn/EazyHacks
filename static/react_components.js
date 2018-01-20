@@ -6,7 +6,7 @@ var Width50 = {width:'50%'};
 var UpperMargin10 = {marginTop:'5px',textAlign:'center'};
 var TextCenter = "{% csrf_token %}";
 var Width100Height250 = {width:'100%',height:'250px'}
-
+var ColoredBackground = {backgroundColor:'#ffefd2'};
 
 // Definition for React components
 var Login = React.createClass({
@@ -22,7 +22,7 @@ ReactDOM.render(<Login />,document.getElementById("login_component"));
 
 function ImageBox (props){
         return(
-                <div className="thumbnail">
+                <div className="thumbnail" style={ColoredBackground}>
                     <a href="www.google.com">
                         <img src={props.img_src} style={Width100Height250} />
                         <div className="caption text-center">

@@ -11,7 +11,7 @@
 
 .body-bg
 {
-   background-color : #9f788d;
+   background-color : #8a9cff;
 }
 
 body
@@ -21,10 +21,16 @@ body
 
 .menu-bg
 {
-   background-color: #b8afb4;
+   background-color: #ffefd2;
 }
 
 .hide-element
 {
    visibility: hidden;
+   height: 0px;
+}
+
+.thumbnail
+{
+   background: #ffefd2;
 }

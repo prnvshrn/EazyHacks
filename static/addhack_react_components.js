@@ -4,7 +4,9 @@ var Width100 = {width:'100%'};
 var InputArray = [];
 var MaginTop10 = {marginTop:'5px'};
 var Width50 = {width:'50%'};
-var WellBackground = {backgroundColor : '#9f788d'};
+var WellBackground = {backgroundColor : '#8f8b88'};
+var ContainerBackground = {backgroundColor:'#ffefd2'};
+var MarginLeftRight = {marginLeft:'5px', marginRight:'5px'};
 
 var HackDetails = React.createClass({
     getInitialState:function(){
@@ -30,7 +32,7 @@ var HackDetails = React.createClass({
     render:function(){
         return(
             <div className="container" >
-                <div className="well" >
+                <div className="form-group">
                 <div className="input-group">
                 <input type="text" className="form-control" value={this.state.value} onChange={this.changewa}/>
                     <div className="input-group-btn">
@@ -56,7 +58,6 @@ var HacksLayout = React.createClass({
         var arr2 = InputArray;
         arr2.splice(i,1);
         InputArray:arr2;
-        alert(i);
         this.setState({comments:arr});
     },
     addButton:function(text){
@@ -92,11 +93,11 @@ var HacksLayout = React.createClass({
             }
             return(
 
-                <div className="container">
+                <div className="container" style={ContainerBackground}>
 
                 <div className="form-group">
                 <label htmlFor="CategoryList">Select a category:</label>
-                <select className="form-control" id="CategoryList">
+                <select className="form-control" form="HackForm" name="CategoryList" id="CategoryList">
                     <option>Sports</option>
                     <option>Kitchen</option>
                     <option>Fitness</option>
@@ -107,14 +108,16 @@ var HacksLayout = React.createClass({
                 </div>
                 <div className="form-group">
                     <label htmlFor="TitleTextbox">Title:</label>
-                    <input type="text" id="TitleTextbox" className="form-control"/>
+                    <input type="text" form="HackForm" id="TitleTextbox" name="TitleTextBox" className="form-control"/>
                 </div>
 
-                    <div className="row">
-                    <button  onClick={this.addButton.bind(null,"Defaultwa")} className="btn btn-info">Add Step</button>
-                    <button  onClick={this.removeAll} className="btn btn-danger">Remove All Steps</button>
+                    <div className="row" style={MarginLeftRight}>
+                    <button  onClick={this.addButton.bind(null,"Defaultwa")} style={Width50} className="btn btn-info">Add Step</button>
+                    <button  onClick={this.removeAll} style={Width50} className="btn btn-danger">Remove All Steps</button>
                     </div>
+
                     {this.state.comments.map(this.createButton)}
+
                     <input type="text" id="TempHackDetails" value={test} className="hide-element" />
                 </div>
 

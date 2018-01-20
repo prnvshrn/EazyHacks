@@ -6,5 +6,4 @@ $(document).ready(function(){
         $("#LoginModal").modal('hide');
     });
 
-
 });
