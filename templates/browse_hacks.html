@@ -2,28 +2,10 @@
 
 {% block main %}
 {% load staticfiles %}
-<script>var hacks_list = "{{ hacks_list }}";</script>
+<script>var hacks_details_url = {% url "hack_base" %} </script>
+<script>var hacks_list = {{ hacks_list|safe }};</script>
 <script type="text/babel" src="{% static "browsehack_react_components.js" %}"></script>
 
 <div id="browse_layout"></div>
-
-<div class="container">
-    <table class="table table-striped table-hover">
-        <thead>
-            <th>Category</th>
-            <th>Title</th>
-            <th>Posted By</th>
-        </thead>
-        <tbody>
-            {% for i in hacks_list %}
-                <tr>
-                    <td>{{ i.category }}</td>
-                    <td>{{ i.title }}</td>
-                    <td>{{ i.username }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
 
 {% endblock %}

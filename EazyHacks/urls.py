@@ -23,4 +23,6 @@ urlpatterns = [
     url(r'^$', views.openLogin, name='login'),
     url(r'^AddHack.html/', views.openAddHack, name='add_hack'),
     url(r'^BrowseHack.html/', views.openBrowseHack, name='browse_hack'),
+    url(r'^HackDetails.html/', views.openLogin ,name='hack_base'),
+    url(r'^HackDetails.html/(?P<hack_id>[0-9]+)/', views.openAddHack, name='hack_details'),
 ]

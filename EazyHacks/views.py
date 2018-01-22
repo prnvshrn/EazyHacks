@@ -1,4 +1,6 @@
 from __future__ import unicode_literals
+
+import json
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import loader
@@ -12,7 +14,6 @@ def openLogin(request):
     global username,username_set
 
     test = HackDetails.objects.values_list('Hack_id','Hack_step')
-    print(test)
     template = loader.get_template('first.html')
     if request.method == 'POST':
         username_set = True
@@ -44,7 +45,9 @@ def openBrowseHack(request):
     template = loader.get_template('browse_hacks.html')
     hacks_list = HackOverview.objects.all()
     print(hacks_list)
-    title_list = list(HackOverview.objects.values_list('category','title'))
+    title_list = list(HackOverview.objects.values_list('Hack_id','category','title'))
+    #print(title_list)
+    title_list = json.dumps(title_list)
     print(title_list)
     context = {'username':username, 'hacks_list':title_list}
     return HttpResponse(template.render(context,request))
