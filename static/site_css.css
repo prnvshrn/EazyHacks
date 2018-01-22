@@ -34,3 +34,16 @@ body
 {
    background: #ffefd2;
 }
+
+.panel:hover
+{
+   transform: scale(1.05);
+   background-color: lightgray;
+}
+
+
+.thumbnail:hover
+{
+   transform: scale(1.05);
+   background-color: lightgray;
+}

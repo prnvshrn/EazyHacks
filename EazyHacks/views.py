@@ -45,7 +45,7 @@ def openBrowseHack(request):
     template = loader.get_template('browse_hacks.html')
     hacks_list = HackOverview.objects.all()
     print(hacks_list)
-    title_list = list(HackOverview.objects.values_list('Hack_id','category','title'))
+    title_list = list(HackOverview.objects.values_list('Hack_id','category','title','username'))
     #print(title_list)
     title_list = json.dumps(title_list)
     print(title_list)
