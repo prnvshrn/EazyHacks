@@ -21,7 +21,7 @@ var HackDetails = React.createClass({
         return(
             <div className="container " >
                 <div className="panel panel-default">
-                    <div className="panel-body menu-bg hover-panel" onClick={this.openURL}>
+                    <div className="panel-body menu-bg hover-panel">
                         {this.props.children}
                     </div>
                 </div>
@@ -41,7 +41,7 @@ var HackDetailsLayout = React.createClass({
         alert(url);
     },
     createButton:function(text,i){
-        var url = hacks_details_url + '/';
+        var url = hacks_details_url  + text[0] + '/';
         //alert(url);
         if(text[1]=="Sports")
         var label = <span className="label label-default">{text[1]}</span>;
@@ -57,15 +57,15 @@ var HackDetailsLayout = React.createClass({
         var label = <span className="label label-danger">{text[1]}</span>;
 
         return(
-            <HackDetails key={i} openURL={this.openURL} index={i}>
+            <HackDetails key={i} onClick={this.openURL} index={i}>
                 <div className="container">
                     <div className="row">
                         <div className="col-sm-2">
-                        <h4>{label}</h4>
+                            <h4>{label}</h4>
                         <p><span className="glyphicon glyphicon-user"></span> : {text[3]}</p>
                         </div>
                         <div className="col-sm-10">
-                        <h3>{text[2]}</h3>
+                            <h3><a href={url}>{text[2]}</a></h3>
                         </div>
                     </div>
                 </div>

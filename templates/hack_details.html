@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block main %}
+{% load staticfiles %}
+<script>var hacks_title = "{{ overview.title }}";</script>
+<script>var hacks_category = "{{ overview.category }}";</script>
+<script>var hacks_username = "{{ overview.username }}";</script>
+<script>var hacks_list = {{ hack_steps|safe }};</script>
+<script type="text/babel" src="{% static "hackdetails_react_components.js" %}"></script>
+<div id="hackdetails_layout"></div>
+
+{% endblock %}

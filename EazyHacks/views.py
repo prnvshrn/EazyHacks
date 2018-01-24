@@ -44,10 +44,21 @@ def openAddHack(request):
 def openBrowseHack(request):
     template = loader.get_template('browse_hacks.html')
     hacks_list = HackOverview.objects.all()
-    print(hacks_list)
     title_list = list(HackOverview.objects.values_list('Hack_id','category','title','username'))
-    #print(title_list)
-    title_list = json.dumps(title_list)
     print(title_list)
+    title_list = json.dumps(title_list)
     context = {'username':username, 'hacks_list':title_list}
     return HttpResponse(template.render(context,request))
+
+
+def openHackDetails(request, hack_id):
+    template = loader.get_template('hack_details.html')
+    overview = HackOverview.objects.all().get(Hack_id=hack_id)
+    hack_details = HackDetails.objects.all().filter(Hack_id=hack_id).values_list('Hack_id','Hack_step')
+    hack_steps = list(HackDetails.objects.all().filter(Hack_id=hack_id).values_list('Hack_id', 'Hack_step'))
+    hack_steps_final = []
+    for i in hack_steps:
+        hack_steps_final.append(i[1])
+    print(hack_steps_final)
+    context = {'overview': overview, 'hack_details':hack_details, 'hack_steps': hack_steps_final}
+    return HttpResponse(template.render(context, request))
