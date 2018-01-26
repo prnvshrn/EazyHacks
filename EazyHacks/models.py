@@ -16,3 +16,8 @@ class HackDetails(models.Model):
     def __str__ (self):
         show = self.Hack_id
         return show
+
+
+class users(models.Model):
+    username = models.CharField(max_length=50)
+    password = models.CharField(max_length=50)

@@ -1,10 +1,11 @@
 from __future__ import unicode_literals
 
 import json
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.template import loader
 from .models import HackOverview, HackDetails
+from django.urls import reverse
 
 # Global variable definition
 username = ""
@@ -12,13 +13,19 @@ username_set = False
 
 def openLogin(request):
     global username,username_set
-
+    print(request.session)
     test = HackDetails.objects.values_list('Hack_id','Hack_step')
     template = loader.get_template('first.html')
+    context = {'username': '', 'username_set': username_set}
+
+    if 'username' in request.session.keys():
+        context.update({'username': request.session['username']})
+
     if request.method == 'POST':
         username_set = True
+        request.session['username'] = request.POST.get("UserNameTextField")
         username = request.POST.get("UserNameTextField")
-    context = {'username':username, 'username_set':username_set}
+        context.update({'username':request.session['username'], 'username_set':username_set})
     return HttpResponse(template.render(context, request))
 
 
@@ -29,7 +36,7 @@ def openAddHack(request):
     if request.method == 'POST':
         print(request.POST.get("CategoryList") , request.POST.get("TitleTextBox"))
         temp = request.POST.get("HackDetails")
-        hack_overview = HackOverview(title=request.POST.get("TitleTextBox"), username=username ,category=request.POST.get("CategoryList"))
+        hack_overview = HackOverview(title=request.POST.get("TitleTextBox"), username=request.session['username'] ,category=request.POST.get("CategoryList"))
         hack_overview.save()
         hacks = temp.split(";")
         hacks = hacks[:-1]
@@ -37,7 +44,7 @@ def openAddHack(request):
             hack_details = HackDetails(Hack_step=i,Hack_id=hack_overview)
             hack_details.save()
         print(len(hacks))
-    context = {'username':username}
+    context = {'username':request.session['username']}
     return HttpResponse(template.render(context,request))
 
 
@@ -47,7 +54,7 @@ def openBrowseHack(request):
     title_list = list(HackOverview.objects.values_list('Hack_id','category','title','username'))
     print(title_list)
     title_list = json.dumps(title_list)
-    context = {'username':username, 'hacks_list':title_list}
+    context = {'username':request.session['username'], 'hacks_list':title_list}
     return HttpResponse(template.render(context,request))
 
 
@@ -62,3 +69,10 @@ def openHackDetails(request, hack_id):
     print(hack_steps_final)
     context = {'overview': overview, 'hack_details':hack_details, 'hack_steps': hack_steps_final}
     return HttpResponse(template.render(context, request))
+
+
+def logOut(request):
+    del request.session['username']
+    global username_set
+    username_set = False
+    return HttpResponseRedirect(reverse('login', args=()))
