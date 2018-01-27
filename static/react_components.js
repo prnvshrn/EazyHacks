@@ -5,14 +5,20 @@ var Width100 = {width:'100%'};
 var Width50 = {width:'50%'};
 var UpperMargin10 = {marginTop:'5px',textAlign:'center'};
 var TextCenter = "{% csrf_token %}";
-var Width100Height250 = {width:'100%',height:'250px'}
+var Width100Height250 = {width:'100%',height:'150px'}
 var ColoredBackground = {backgroundColor:'#ffefd2'};
 
 // Definition for React components
 var Login = React.createClass({
     render:function(){
-            return(<div>
-                        <input type="text" className="form-control" placeholder="Enter a username" name="UserNameTextField" id="UserNameTextField" style={Width100} />
+            return(
+                <div>
+                <div className="form-group">
+                    <input type="text" className="form-control" placeholder="Enter a username" name="UserNameTextField" id="UserNameTextField" style={Width100} />
+                </div>
+                <div className="form-group">
+                    <input type="password" className="form-control" placeholder="Enter a password" name="PasswordTextField" id="PasswordTextField" style={Width100} />
+                </div>
                 </div>
             );
         }

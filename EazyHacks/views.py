@@ -4,8 +4,9 @@ import json
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.template import loader
-from .models import HackOverview, HackDetails
+from .models import HackOverview, HackDetails, users
 from django.urls import reverse
+from django.contrib import messages
 
 # Global variable definition
 username = ""
@@ -22,10 +23,27 @@ def openLogin(request):
         context.update({'username': request.session['username']})
 
     if request.method == 'POST':
-        username_set = True
-        request.session['username'] = request.POST.get("UserNameTextField")
-        username = request.POST.get("UserNameTextField")
-        context.update({'username':request.session['username'], 'username_set':username_set})
+        if 'LoginButton' in request.POST:
+            print("Login")
+            try:
+                temp_username = users.objects.get(username=request.POST.get("UserNameTextField"))
+                print(request.POST.get("UserNameTextField"), temp_username.password)
+                if temp_username.password == request.POST.get("PasswordTextField"):
+                    username_set = True
+                    request.session['username'] = request.POST.get("UserNameTextField")
+                    username = request.POST.get("UserNameTextField")
+                    context.update({'username': request.session['username'], 'username_set': username_set})
+                else:
+                    messages.add_message(request, messages.ERROR, 'Your username and password do not match')
+            except users.DoesNotExist:
+                messages.add_message(request, messages.ERROR, 'The username does not exists. Please sgin up')
+        if 'SignUpButton' in request.POST:
+            userInstance = users(username=request.POST.get("UserNameTextField"),password=request.POST.get("PasswordTextField"))
+            userInstance.save()
+            username_set = True
+            request.session['username'] = request.POST.get("UserNameTextField")
+            username = request.POST.get("UserNameTextField")
+            context.update({'username':request.session['username'], 'username_set':username_set})
     return HttpResponse(template.render(context, request))
 
 

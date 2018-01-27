@@ -19,5 +19,5 @@ class HackDetails(models.Model):
 
 
 class users(models.Model):
-    username = models.CharField(max_length=50)
-    password = models.CharField(max_length=50)
+    username = models.CharField(max_length=50, blank=False, null=False)
+    password = models.CharField(max_length=50, blank=False, null=False)
