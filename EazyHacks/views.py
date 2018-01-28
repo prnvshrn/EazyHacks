@@ -10,17 +10,19 @@ from django.contrib import messages
 
 # Global variable definition
 username = ""
-username_set = False
+
 
 def openLogin(request):
-    global username,username_set
+    global username
+    username_set = False
     print(request.session)
     test = HackDetails.objects.values_list('Hack_id','Hack_step')
     template = loader.get_template('first.html')
     context = {'username': '', 'username_set': username_set}
 
     if 'username' in request.session.keys():
-        context.update({'username': request.session['username'], 'username_set': True})
+        username_set = True
+        context.update({'username': request.session['username'], 'username_set': username_set})
 
     if request.method == 'POST':
         if 'LoginButton' in request.POST:
@@ -34,9 +36,9 @@ def openLogin(request):
                     username = request.POST.get("UserNameTextField")
                     context.update({'username': request.session['username'], 'username_set': username_set})
                 else:
-                    messages.add_message(request, messages.ERROR, 'Your username and password do not match')
+                    messages.add_message(request, messages.ERROR, 'Your username and password are invalid')
             except users.DoesNotExist:
-                messages.add_message(request, messages.ERROR, 'The username does not exists. Please sgin up')
+                messages.add_message(request, messages.ERROR, 'The username does not exists. Please sign up')
         if 'SignUpButton' in request.POST:
             userInstance = users(username=request.POST.get("UserNameTextField"),password=request.POST.get("PasswordTextField"))
             userInstance.save()
@@ -104,6 +106,5 @@ def openHackDetails(request, hack_id):
 def logOut(request):
     if 'username' in request.session.keys():
         del request.session['username']
-    global username_set
     username_set = False
     return HttpResponseRedirect(reverse('login', args=()))
