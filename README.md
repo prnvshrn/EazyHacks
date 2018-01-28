@@ -10,3 +10,7 @@ Languages - Python, JavaScript, HTML5, CSS3 <br> Frameworks - Django, React, Boo
 3. Browsing through hacks
 4. Seeing details of a hack
 
+### 1. Overview
+Once user logs in to the application, a home page appears as follows.
+The menu option will redirect them to 
+
