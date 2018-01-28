@@ -22,7 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^$', views.openLogin, name='login'),
     url(r'^AddHack.html/', views.openAddHack, name='add_hack'),
-    url(r'^BrowseHack.html/', views.openBrowseHack, name='browse_hack'),
+    url(r'^BrowseHack.html/(?P<hack_type>[0-9]+)/', views.openBrowseHack, name='browse_hack'),
     url(r'^HackDetails.html/(?P<hack_id>[0-9]+)/', views.openHackDetails, name='hack_details'),
     url(r'^HackDetails.html/', views.openLogin ,name='hack_base'),
     url(r'^Logout/',views.logOut,name='logout')

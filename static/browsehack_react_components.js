@@ -47,11 +47,11 @@ var HackDetailsLayout = React.createClass({
         var label = <span className="label label-default">{text[1]}</span>;
         else if(text[1]=="Gaming")
         var label = <span className="label label-primary">{text[1]}</span>;
-        else if(text[i] == "Kitchen")
+        else if(text[1] == "Kitchen")
         var label = <span className="label label-success">{text[1]}</span>;
         else if(text[1]=="Daily Life")
         var label = <span className="label label-info">{text[1]}</span>;
-        else if(text[i] == "Fitness")
+        else if(text[1] == "Fitness")
         var label = <span className="label label-warning">{text[1]}</span>;
         else if(text[1]=="Miscellaneous")
         var label = <span className="label label-danger">{text[1]}</span>;

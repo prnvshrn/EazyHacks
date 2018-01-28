@@ -2,22 +2,25 @@
 
 var Width100 = {width:'100%'};
 var InputArray = [];
-var MaginTop10 = {marginTop:'5px'};
+var MaginTop10 = {marginTop:'10px'};
 var Width50 = {width:'50%'};
-var WellBackground = {backgroundColor : '#8f8b88'};
+var Panelbackground = {backgroundColor : '#D9D9D9'};
 var ContainerBackground = {backgroundColor:'#ffefd2'};
 var MarginLeftRight = {marginLeft:'5px', marginRight:'5px'};
+var GreenColor = {color:'#228B22'};
 
 var HackDetails = React.createClass({
     getInitialState:function(){
         return{
-            comments_temp:[]
+            comments_temp:[],
+            saved:false
         }
     },
     add:function(){
       this.props.addComponent(this.state.value);
     },
     addHacks:function(){
+        this.state.saved = true;
         this.props.addHacks(this.state.value, this.props.index);
     },
       remove:function(){
@@ -29,19 +32,31 @@ var HackDetails = React.createClass({
     test:function(){
         InputArray.push(this.state.value);
     },
+    hidelabel:function(){
+        this.state.saved = false;
+    },
     render:function(){
+        if(this.state.saved == true)
+            var label = <p className="text-success"><span style={GreenColor} className="glyphicon glyphicon-ok-circle"></span>This step has been saved</p>;
+        else
+        var label = '';
         return(
-            <div className="container" >
+
+                <div className="panel panel-default" style={MaginTop10}>
+                    <div className="panel-body" style={Panelbackground}>
                 <div className="form-group">
+                    {label}
                 <div className="input-group">
-                <input type="text" className="form-control" value={this.state.value} onChange={this.changewa}/>
+                <input type="text" className="form-control" onClick={this.hidelabel}  value={this.state.value} onChange={this.changewa}/>
                     <div className="input-group-btn">
                     <button type="button"  onClick={this.remove} className="btn btn-danger"><span className="glyphicon glyphicon-minus"></span></button>
                     <button type="button" className="btn btn-success" onClick={this.addHacks}><span className="glyphicon glyphicon-ok"></span></button>
                     </div>
                 </div>
                 </div>
-            </div>
+                    </div>
+                </div>
+
         );
     }
 })

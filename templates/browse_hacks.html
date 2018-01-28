@@ -2,10 +2,31 @@
 
 {% block main %}
 {% load staticfiles %}
+<script>var soocer_url = "{% url "browse_hack" 1 %}";</script>
+<script>var kitchen_url = "{% url "browse_hack" 2 %}";</script>
+<script>var fitness_url = "{% url "browse_hack" 3 %}";</script>
+<script>var gaming_url = "{% url "browse_hack" 4 %}";</script>
+<script>var dailylife_url = "{% url "browse_hack" 5 %}";</script>
+<script>var miscellaneous_url = "{% url "browse_hack" 6 %}";</script>
 <script>var hacks_details_url = {% url "hack_base" %} </script>
 <script>var hacks_list = {{ hacks_list|safe }};</script>
 <script type="text/babel" src="{% static "browsehack_react_components.js" %}"></script>
 
+<div class="container">
+<div class="form-group">
+                <label for="CategoryList">Sort by category:</label>
+                <select class="form-control" onChange="window.location.href=this.value" name="CategoryList" id="CategoryList">
+                    <option value="{% url "browse_hack" 0 %}"></option>
+                    <option value="{% url "browse_hack" 0 %}">All</option>
+                    <option value="{% url "browse_hack" 1 %}">Sports</option>
+                    <option value="{% url "browse_hack" 2 %}">Kitchen</option>
+                    <option value="{% url "browse_hack" 3 %}">Fitness</option>
+                    <option value="{% url "browse_hack" 4 %}">Gaming</option>
+                    <option value="{% url "browse_hack" 5 %}">Daily Life</option>
+                    <option value="{% url "browse_hack" 6 %}">Miscellaneous</option>
+                  </select>
+                </div>
+</div>
 <div id="browse_layout"></div>
 
 {% endblock %}

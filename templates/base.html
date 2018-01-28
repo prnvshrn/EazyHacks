@@ -33,8 +33,9 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
                           <li><a href="{% url "login" %}">Home</a></li>
-                          <li><a href="{% url "browse_hack" %}">Browse Hacks</a></li>
+                          <li><a href="{% url "browse_hack" 0 %}">Browse Hacks</a></li>
                           <li><a href="{% url "add_hack" %}">Add Hacks</a></li>
+                          <li><a href="#" data-toggle="modal" data-target="#AboutModal">About</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
             <li><a href="#"><span class="glyphicon glyphicon-user"></span> {{ username }}</a></li>
@@ -45,6 +46,25 @@
 </nav>
 
 
+<div class="modal fade" id="AboutModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">About EazyHacks</h4>
+        </div>
+        <div class="modal-body">
+          <p>Developed by Pranav Sharan. You can reach out to me at prnvshrn@gmail.com or my phone 480-652-2917. If interested you can check the github link as well.(<u>https://github.com/prnvshrn/EazyHacks</u>)</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
 
 {% block main %}

@@ -20,7 +20,7 @@ def openLogin(request):
     context = {'username': '', 'username_set': username_set}
 
     if 'username' in request.session.keys():
-        context.update({'username': request.session['username']})
+        context.update({'username': request.session['username'], 'username_set': True})
 
     if request.method == 'POST':
         if 'LoginButton' in request.POST:
@@ -66,11 +66,23 @@ def openAddHack(request):
     return HttpResponse(template.render(context,request))
 
 
-def openBrowseHack(request):
+def openBrowseHack(request, hack_type):
     template = loader.get_template('browse_hacks.html')
     hacks_list = HackOverview.objects.all()
     title_list = list(HackOverview.objects.values_list('Hack_id','category','title','username'))
-    print(title_list)
+    if hack_type=='1':
+        print("Sports")
+        title_list = list(HackOverview.objects.all().filter(category='Sports').values_list('Hack_id', 'category', 'title', 'username'))
+    if hack_type=='2':
+        title_list = list(HackOverview.objects.all().filter(category='Kitchen').values_list('Hack_id', 'category', 'title', 'username'))
+    if hack_type=='3':
+        title_list = list(HackOverview.objects.all().filter(category='Fitness').values_list('Hack_id', 'category', 'title', 'username'))
+    if hack_type=='4':
+        title_list = list(HackOverview.objects.all().filter(category='Gaming').values_list('Hack_id', 'category', 'title', 'username'))
+    if hack_type=='5':
+        title_list = list(HackOverview.objects.all().filter(category='Daily Life').values_list('Hack_id', 'category', 'title', 'username'))
+    if hack_type=='6':
+        title_list = list(HackOverview.objects.all().filter(category='Miscellaneous').values_list('Hack_id', 'category', 'title', 'username'))
     title_list = json.dumps(title_list)
     context = {'username':request.session['username'], 'hacks_list':title_list}
     return HttpResponse(template.render(context,request))

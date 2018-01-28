@@ -29,7 +29,7 @@ ReactDOM.render(<Login />,document.getElementById("login_component"));
 function ImageBox (props){
         return(
                 <div className="thumbnail" style={ColoredBackground}>
-                    <a href="www.google.com">
+                    <a href={props.img_url}>
                         <img src={props.img_src} style={Width100Height250} />
                         <div className="caption text-center">
                             <h3>{props.img_caption}</h3>
@@ -47,24 +47,24 @@ class ImageBoxLayout extends React.Component
             <div className="body-bg">
                 <div className="row">
                     <div className="col-md-4">
-                        <ImageBox img_src={soocer_image} img_caption={soocer_caption}/>
+                        <ImageBox img_src={soocer_image} img_url={soocer_url} img_caption={soocer_caption}/>
                     </div>
                     <div className="col-md-4">
-                        <ImageBox img_src={kitchen_image} img_caption={kitchen_caption}/>
+                        <ImageBox img_src={kitchen_image} img_url={kitchen_url} img_caption={kitchen_caption}/>
                     </div>
                     <div className="col-md-4">
-                        <ImageBox img_src={fitness_image} img_caption={fitness_caption}/>
+                        <ImageBox img_src={fitness_image} img_url={fitness_url} img_caption={fitness_caption}/>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-md-4">
-                        <ImageBox img_src={gaming_image} img_caption={gaming_caption}/>
+                        <ImageBox img_src={gaming_image} img_url={gaming_url} img_caption={gaming_caption}/>
                     </div>
                     <div className="col-md-4">
-                        <ImageBox img_src={dailylife_image} img_caption={dailylife_caption}/>
+                        <ImageBox img_src={dailylife_image} img_url={dailylife_url} img_caption={dailylife_caption}/>
                     </div>
                     <div className="col-md-4">
-                        <ImageBox img_src={miscellaneous_image} img_caption={miscellaneous_caption}/>
+                        <ImageBox img_src={miscellaneous_image} img_url={miscellaneous_url} img_caption={miscellaneous_caption}/>
                     </div>
                 </div>
             </div>
