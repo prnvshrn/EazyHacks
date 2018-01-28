@@ -102,7 +102,8 @@ def openHackDetails(request, hack_id):
 
 
 def logOut(request):
-    del request.session['username']
+    if 'username' in request.session.keys():
+        del request.session['username']
     global username_set
     username_set = False
     return HttpResponseRedirect(reverse('login', args=()))
