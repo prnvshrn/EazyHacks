@@ -26,10 +26,8 @@ def openLogin(request):
 
     if request.method == 'POST':
         if 'LoginButton' in request.POST:
-            print("Login")
             try:
                 temp_username = users.objects.get(username=request.POST.get("UserNameTextField"))
-                print(request.POST.get("UserNameTextField"), temp_username.password)
                 if temp_username.password == request.POST.get("PasswordTextField"):
                     username_set = True
                     request.session['username'] = request.POST.get("UserNameTextField")
@@ -39,6 +37,8 @@ def openLogin(request):
                     messages.add_message(request, messages.ERROR, 'Your username and password are invalid')
             except users.DoesNotExist:
                 messages.add_message(request, messages.ERROR, 'The username does not exists. Please sign up')
+            except users.MultipleObjectsReturned:
+                messages.add_message(request, messages.ERROR, 'Username already in use. Please select a different one.')
         if 'SignUpButton' in request.POST:
             userInstance = users(username=request.POST.get("UserNameTextField"),password=request.POST.get("PasswordTextField"))
             userInstance.save()
