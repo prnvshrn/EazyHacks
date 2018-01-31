@@ -34,18 +34,22 @@ def openLogin(request):
                     username = request.POST.get("UserNameTextField")
                     context.update({'username': request.session['username'], 'username_set': username_set})
                 else:
-                    messages.add_message(request, messages.ERROR, 'Your username and password are invalid')
+                    messages.add_message(request, messages.ERROR, 'Your username and password did not match')
             except users.DoesNotExist:
                 messages.add_message(request, messages.ERROR, 'The username does not exists. Please sign up')
             except users.MultipleObjectsReturned:
-                messages.add_message(request, messages.ERROR, 'Username already in use. Please select a different one.')
+                messages.add_message(request, messages.ERROR, 'Something wrong happened. Please select a different username.')
         if 'SignUpButton' in request.POST:
-            userInstance = users(username=request.POST.get("UserNameTextField"),password=request.POST.get("PasswordTextField"))
-            userInstance.save()
-            username_set = True
-            request.session['username'] = request.POST.get("UserNameTextField")
-            username = request.POST.get("UserNameTextField")
-            context.update({'username':request.session['username'], 'username_set':username_set})
+            checkUserExists = users.objects.all().filter(username=request.POST.get("UserNameTextField")).values()
+            if checkUserExists:
+                messages.add_message(request, messages.ERROR, 'Username already in use. Please select a different one.')
+            else:
+                userInstance = users(username=request.POST.get("UserNameTextField"),password=request.POST.get("PasswordTextField"))
+                userInstance.save()
+                username_set = True
+                request.session['username'] = request.POST.get("UserNameTextField")
+                username = request.POST.get("UserNameTextField")
+                context.update({'username':request.session['username'], 'username_set':username_set})
     return HttpResponse(template.render(context, request))
 
 
@@ -99,7 +103,7 @@ def openHackDetails(request, hack_id):
     for i in hack_steps:
         hack_steps_final.append(i[1])
     print(hack_steps_final)
-    context = {'overview': overview, 'hack_details':hack_details, 'hack_steps': hack_steps_final}
+    context = {'overview': overview, 'hack_details':hack_details, 'hack_steps': hack_steps_final, 'username': request.session['username']}
     return HttpResponse(template.render(context, request))
 
 
